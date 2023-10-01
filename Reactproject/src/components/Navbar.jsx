@@ -76,7 +76,12 @@ export default function Navbar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              {/* // for green Color button */}
+              <button className="btn btn-outline-success" type="submit">           
+              {/* // for blue Color button */}
+              {/* <button className="btn btn-outline-primary" type="submit"> */}
+              {/* // for red Color button */}
+              {/* <button className="btn btn-outline-danger" type="submit"> */}      
                 {props.search}
               </button>
             </form>
@@ -89,7 +94,7 @@ export default function Navbar(props) {
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired, //isRequried give error if it undefined
-  seach: PropTypes.string,
+  search: PropTypes.string,
 };
 
 Navbar.defaultProps = {
