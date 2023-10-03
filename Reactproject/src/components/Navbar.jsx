@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 export default function Navbar(props) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             {props.title}
@@ -69,6 +71,18 @@ export default function Navbar(props) {
                 </a>
               </li>
             </ul>
+            <div className="form-check form-switch">
+              <input
+                onClick={props.toggleMode}
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+              />
+              <label className={`form-check-label text-${props.mode ==='light'?'dark':'light'} me-2`} >
+                Enable Dark Mode
+              </label>
+            </div>
             <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
@@ -77,11 +91,11 @@ export default function Navbar(props) {
                 aria-label="Search"
               />
               {/* // for green Color button */}
-              <button className="btn btn-outline-success" type="submit">           
-              {/* // for blue Color button */}
-              {/* <button className="btn btn-outline-primary" type="submit"> */}
-              {/* // for red Color button */}
-              {/* <button className="btn btn-outline-danger" type="submit"> */}      
+              <button className="btn btn-outline-success" type="submit">
+                {/* // for blue Color button */}
+                {/* <button className="btn btn-outline-primary" type="submit"> */}
+                {/* // for red Color button */}
+                {/* <button className="btn btn-outline-danger" type="submit"> */}
                 {props.search}
               </button>
             </form>

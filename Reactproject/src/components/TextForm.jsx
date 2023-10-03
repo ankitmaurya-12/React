@@ -7,7 +7,7 @@ export default function TextForm(props) {
     const [text, setText] = useState("")
     
     // text = "New Text";     //Wrong way to change state
-    // useText("New Text");     //Correct way to change state
+    // setText("New Text");     //Correct way to change state
 
 
     const handleUpClick =()=>{
@@ -15,31 +15,34 @@ export default function TextForm(props) {
         let newtext = text.toUpperCase();
         // setText("You Have clicked on handleUpClick")
         setText(newtext)
-    }
-
-    const handleLowerClick =()=>{
-        // console.log("Uppercase was Clicked" +text)
+        props.showAlert('Converted to Uppercase', 'success')
+      }
+      
+      const handleLowerClick =()=>{
+        // console.log("Lowercase was Clicked" +text)
         let newtext = text.toLowerCase();
-        // setText("You Have clicked on handleUpClick")
+        // setText("You Have clicked on handleLowerClick")
         setText(newtext)
-    }
-    const handleClearClick =()=>{
+        props.showAlert('Converted to Lowercase', 'success')
+      }
+      const handleClearClick =()=>{
         setText("");
-    }
-
-    const handleOnChnage=(event)=>{
+        props.showAlert('Text Cleared', 'success')
+      }
+      
+      const handleOnChnage=(event)=>{
         // console.log("On Change")
         setText(event.target.value);
-    }
-    const speak = () => {
-      let msg = new SpeechSynthesisUtterance();
-      msg.text = text;
-      window.speechSynthesis.speak(msg);
-    }
-
-    return (
-      <>
-    <div>
+      }
+      const speak = () => {
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        window.speechSynthesis.speak(msg);
+      }
+      
+      return (
+        <>
+    <div className="container " style={{color : props.mode ==='dark'?'white':'black'}}>
         <h2>
         {props.heading}
         </h2>
@@ -48,6 +51,7 @@ export default function TextForm(props) {
         Exampe Text Area :
         </label> */}
         <textarea
+          style={{backgroundColor : props.mode ==='dark'?'#282C34':'white', color : props.mode ==='dark'?'white':'black'}}
           value={text}
           onChange={handleOnChnage}
           className="form-control"
@@ -67,13 +71,16 @@ export default function TextForm(props) {
         <button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
     </div>
     
-    <div className="container my-3">
-        <h2> Your Text summary</h2>
-        <p><b> {text.split(" ").length}</b> Words & <b>{text.length}</b> Characters.</p>
+    <div className="container my-3 border-top " style={{color : props.mode ==='dark'?'white':'black'}}>
+        <h3 > Your Text summary</h3>
+        <p ><b> {text.split(" ").length}</b> Words & <b>{text.length}</b> Characters.</p>
         <p> <b>{0.008 * text.split(" ").length} </b> Minutes take to read.</p>
-        <h3>Previews</h3>
-        <p>{text}</p>
     </div>
+    <div className="container my-3 border-top " style={{color : props.mode ==='dark'?'white':'black'}}>
+        <h3 className="my-3">You can Preview Below : -</h3>
+        <p>{text.length>0?text:'Enter something Above to show here.'}</p>
+    </div>
+
     </>
    
   );

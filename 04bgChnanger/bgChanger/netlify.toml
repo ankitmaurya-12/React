@@ -1,4 +1,4 @@
 [build]
 base = "04bgChnanger/bgChanger"
-command = "npm run build" # Specify your build command if needed
-publish = "build" # Correct the publish directory to "build"
+command = "npm run build"
+publish = "build"
